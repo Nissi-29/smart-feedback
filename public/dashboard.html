@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Smart Feedback System — Admin Analytics Dashboard with real-time sentiment insights, charts, and feedback trends." />
+  <title>Dashboard — Smart Feedback System</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+
+  <!-- ═══ NAVBAR ═══ -->
+  <nav class="navbar">
+    <div class="logo">
+      <span class="icon">💬</span>
+      <span>Smart Feedback</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="/" id="nav-home">📝 Submit</a></li>
+      <li><a href="/dashboard" class="active" id="nav-dashboard">📊 Dashboard</a></li>
+    </ul>
+  </nav>
+
+  <!-- ═══ MAIN ═══ -->
+  <main class="page-wrapper">
+    <header class="page-header fade-in">
+      <h1>Analytics Dashboard</h1>
+      <p>Real-time insights from user feedback — sentiment trends, category breakdown, and satisfaction metrics.</p>
+    </header>
+
+    <!-- ─── Stat Cards ─── -->
+    <div class="stat-cards fade-in" id="statCards">
+      <div class="stat-card total">
+        <div class="stat-icon">📋</div>
+        <div class="stat-value" id="totalFeedback">—</div>
+        <div class="stat-label">Total Feedback</div>
+      </div>
+      <div class="stat-card pos">
+        <div class="stat-icon">😊</div>
+        <div class="stat-value" id="posCount">—</div>
+        <div class="stat-label">Positive</div>
+      </div>
+      <div class="stat-card neu">
+        <div class="stat-icon">😐</div>
+        <div class="stat-value" id="neuCount">—</div>
+        <div class="stat-label">Neutral</div>
+      </div>
+      <div class="stat-card neg">
+        <div class="stat-icon">😞</div>
+        <div class="stat-value" id="negCount">—</div>
+        <div class="stat-label">Negative</div>
+      </div>
+      <div class="stat-card rating">
+        <div class="stat-icon">⭐</div>
+        <div class="stat-value" id="avgRating">—</div>
+        <div class="stat-label">Avg Rating</div>
+      </div>
+    </div>
+
+    <!-- ─── Chart Grid ─── -->
+    <div class="chart-grid fade-in" style="animation-delay:0.1s">
+      <div class="chart-card">
+        <div class="chart-title">🍩 Sentiment Distribution</div>
+        <canvas id="sentimentPie"></canvas>
+      </div>
+      <div class="chart-card">
+        <div class="chart-title">📊 Sentiment Comparison</div>
+        <canvas id="sentimentBarChart"></canvas>
+      </div>
+      <div class="chart-card">
+        <div class="chart-title">📂 Category Breakdown</div>
+        <canvas id="categoryChart"></canvas>
+      </div>
+      <div class="chart-card">
+        <div class="chart-title">⭐ Rating Distribution</div>
+        <canvas id="ratingChart"></canvas>
+      </div>
+    </div>
+
+    <!-- ─── Trend Chart (full width) ─── -->
+    <div class="chart-card fade-in" style="animation-delay:0.2s; margin-bottom: 2rem;">
+      <div class="chart-title">📈 7-Day Sentiment Trend</div>
+      <canvas id="trendChart" height="120"></canvas>
+    </div>
+
+    <!-- ─── All Feedback Table ─── -->
+    <section class="insights-section fade-in" style="animation-delay:0.3s">
+      <h2>📝 All Feedback</h2>
+      <div style="margin-bottom: 1rem; display:flex; gap:0.75rem; flex-wrap:wrap;">
+        <select id="filterSentiment" class="form-control" style="max-width:180px">
+          <option value="">All Sentiments</option>
+          <option value="Positive">Positive</option>
+          <option value="Neutral">Neutral</option>
+          <option value="Negative">Negative</option>
+        </select>
+        <select id="filterCategory" class="form-control" style="max-width:180px">
+          <option value="">All Categories</option>
+          <option value="General">General</option>
+          <option value="Service">Service</option>
+          <option value="Product">Product</option>
+          <option value="Experience">Experience</option>
+          <option value="Support">Support</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+      <div class="insights-grid" id="feedbackGrid">
+        <div class="empty-state">
+          <div class="empty-icon">📭</div>
+          <p>No feedback data available yet.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer class="footer">
+    Smart Feedback System &copy; 2026 · TCS ion Industry Project · Chaitanya Deemed to be University
+  </footer>
+
+  <!-- ═══ Scripts ═══ -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="/js/dashboard.js"></script>
+</body>
+</html>

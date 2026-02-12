@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Smart Feedback Collection and Analysis System — Submit feedback and get instant AI-powered sentiment analysis." />
+  <title>Smart Feedback System — Submit &amp; Analyze</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+
+  <!-- ═══ NAVBAR ═══ -->
+  <nav class="navbar">
+    <div class="logo">
+      <span class="icon">💬</span>
+      <span>Smart Feedback</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="/" class="active" id="nav-home">📝 Submit</a></li>
+      <li><a href="/dashboard" id="nav-dashboard">📊 Dashboard</a></li>
+    </ul>
+  </nav>
+
+  <!-- ═══ TOAST CONTAINER ═══ -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- ═══ MAIN CONTENT ═══ -->
+  <main class="page-wrapper">
+    <header class="page-header fade-in">
+      <h1>Feedback Sentiment Analysis</h1>
+      <p>Share your thoughts — our AI instantly analyzes the sentiment and extracts key insights.</p>
+    </header>
+
+    <div class="content-grid">
+
+      <!-- ─── LEFT: Feedback Form ─── -->
+      <div class="card fade-in" style="animation-delay: 0.1s">
+        <div class="card-header">
+          <div class="card-icon purple">📝</div>
+          <h2 class="card-title">Submit Feedback</h2>
+        </div>
+
+        <form id="feedbackForm" autocomplete="off">
+          <div class="form-group">
+            <label class="form-label" for="nameInput">Your Name</label>
+            <input
+              type="text"
+              id="nameInput"
+              class="form-control"
+              placeholder="e.g. Bhavya Sharma"
+              required
+              maxlength="100"
+            />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="emailInput">Email (optional)</label>
+            <input
+              type="email"
+              id="emailInput"
+              class="form-control"
+              placeholder="your@email.com"
+            />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="categoryInput">Category</label>
+            <select id="categoryInput" class="form-control">
+              <option value="General">General</option>
+              <option value="Service">Service</option>
+              <option value="Product">Product</option>
+              <option value="Experience">Experience</option>
+              <option value="Support">Support</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Rating</label>
+            <div class="star-rating" id="starRating">
+              <input type="radio" id="star5" name="rating" value="5" />
+              <label for="star5" title="5 stars">★</label>
+              <input type="radio" id="star4" name="rating" value="4" />
+              <label for="star4" title="4 stars">★</label>
+              <input type="radio" id="star3" name="rating" value="3" checked />
+              <label for="star3" title="3 stars">★</label>
+              <input type="radio" id="star2" name="rating" value="2" />
+              <label for="star2" title="2 stars">★</label>
+              <input type="radio" id="star1" name="rating" value="1" />
+              <label for="star1" title="1 star">★</label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="messageInput">Your Feedback</label>
+            <textarea
+              id="messageInput"
+              class="form-control"
+              placeholder="Tell us about your experience…"
+              required
+              maxlength="2000"
+              rows="5"
+            ></textarea>
+            <div style="text-align:right; margin-top:0.3rem;">
+              <span id="charCount" style="font-size:0.72rem; color:var(--text-muted);">0 / 2000</span>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-full btn-lg" id="submitBtn">
+            <span id="btnText">🔍 Analyze &amp; Submit</span>
+            <span id="btnSpinner" class="spinner" style="display:none"></span>
+          </button>
+        </form>
+
+        <!-- ─── Sentiment Result ─── -->
+        <div class="sentiment-result" id="sentimentResult">
+          <div class="result-header">
+            <span>Result:</span>
+            <span class="sentiment-badge" id="sentimentBadge"></span>
+            <span class="sentiment-score" id="sentimentScore"></span>
+          </div>
+          <div class="keywords" id="keywordsContainer"></div>
+        </div>
+      </div>
+
+      <!-- ─── RIGHT: Sentiment Overview ─── -->
+      <div class="card fade-in" style="animation-delay: 0.2s">
+        <div class="card-header">
+          <div class="card-icon cyan">📊</div>
+          <h2 class="card-title">Sentiment Overview</h2>
+        </div>
+
+        <div style="margin-bottom: 1.5rem;">
+          <canvas id="sentimentDoughnut" height="240"></canvas>
+        </div>
+
+        <div>
+          <canvas id="sentimentBar" height="200"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── Recent Insights ─── -->
+    <section class="insights-section fade-in" style="animation-delay: 0.3s">
+      <h2>💡 Recent Insights</h2>
+      <div class="insights-grid" id="insightsGrid">
+        <div class="empty-state">
+          <div class="empty-icon">📭</div>
+          <p>No feedback submitted yet. Be the first!</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer class="footer">
+    Smart Feedback System &copy; 2026 · TCS ion Industry Project · Chaitanya Deemed to be University
+  </footer>
+
+  <!-- ═══ Scripts ═══ -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>
